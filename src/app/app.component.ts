@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
     option: [3],
     variant: [],
   });
+  selected: any;
 
   formValue$!: Observable<any>;
   constructor(private fb: FormBuilder) {}

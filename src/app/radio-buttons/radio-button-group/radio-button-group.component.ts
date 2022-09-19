@@ -39,22 +39,22 @@ export class RadioButtonGroupComponent
 
   ngAfterViewInit(): void {
     const button = this.buttons?.find(({ value }) => value === this.value);
-    this.markButton(button, true);
+    this.changeButtonState(button, true);
   }
 
   checkEventController(checkedButton: RadioButtonComponent): void {
-    this.buttons?.forEach((button) => this.markButton(button, false));
+    this.buttons?.forEach((button) => this.changeButtonState(button, false));
     if (this._disabled) return;
     this.onChange(checkedButton.value);
   }
 
-  private markButton(
+  private changeButtonState(
     button: RadioButtonComponent | undefined,
     checked: boolean
   ): void {
     if (!button) return;
-    button.ihputRef.nativeElement.checked = checked;
-    button.checked = checked || undefined;
+    button.ihput.nativeElement.checked = checked;
+    button.checked = checked;
     button.detectChanges();
   }
 }

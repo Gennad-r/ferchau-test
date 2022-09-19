@@ -1,27 +1,37 @@
-# FerchauTestProject
+# Applicant task - Angular - Create a radio group module
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+The radio group module should export two standalone components:
 
-## Development server
+- A radio button component
+- A radio group component
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Radio button component
 
-## Code scaffolding
+Should be a radio button with custom CSS styles. It should work similar to the native browser radio buttons for the selection model.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Acceptance criteria:
 
-## Build
+- Radio button component must be a standalone component
+- Radio button component must have a value input
+- Radio button component can be disabled
+- Radio button component can have a label
+- Radio button component can only be used inside a radio group component
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Radio Group component
 
-## Running unit tests
+Should be a custom form control to work with template driven and reactive forms.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Acceptance criteria:
 
-## Running end-to-end tests
+- Only one radio button can be selected at a time
+- Radio group component only allows radio button components as content
+- Radio group component can be disabled
+- Radio group component must work as custom form control with template driven forms
+- Radio group component must work as custom form control with reactive forms
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Hints:
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- The component UI design is up to you (a basic design is enough)
+- Don't use third party component libraries
+- Unit tests are mandatory
+- A11y can be ignored

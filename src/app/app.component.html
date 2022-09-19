@@ -1,27 +1,49 @@
+<h1>Custom radio buttons</h1>
 <div>
+  <h3>Form state:</h3>
   <pre>{{ (formValue$ | async) || form.value | json }}</pre>
 </div>
 <hr />
+
+<h2>Custom form control with reactive forms</h2>
 <form [formGroup]="form">
   <input type="text" formControlName="email" />
 
   <app-radio-button-group
     disabled-group
     formControlName="option"
-    groupTitle="First fieldset"
+    groupTitle="Disabled fieldset"
   >
     <app-radio-button [disabled]="true" [value]="1">Option 1</app-radio-button>
     <app-radio-button [value]="4">Option 2</app-radio-button>
     <app-radio-button [value]="3">Option 2</app-radio-button>
   </app-radio-button-group>
 
-  <app-radio-button-group formControlName="variant">
+  <app-radio-button-group
+    formControlName="variant"
+    groupTitle="With disabled option"
+  >
     <app-radio-button disabled value="ein">Variant 1</app-radio-button>
     <app-radio-button value="zwei">Variant 2</app-radio-button>
     <app-radio-button value="drei">Variant 3</app-radio-button>
     <app-radio-button value="fier">Variant 4</app-radio-button>
-    <app-radio-button checked value="funf">Variant 5</app-radio-button>
+    <app-radio-button value="funf">Variant 5</app-radio-button>
     <app-radio-button value="sechs">Variant 6</app-radio-button>
     <app-radio-button value="sieben">Variant 7</app-radio-button>
   </app-radio-button-group>
 </form>
+<hr />
+
+<h2>Custom form control with template driven forms</h2>
+<app-radio-button-group [(ngModel)]="selected" groupTitle="Group with NgModel">
+  <app-radio-button [value]="{ ein: 1 }">Variant 1</app-radio-button>
+  <app-radio-button [value]="{ zwei: 2 }">Variant 2</app-radio-button>
+  <app-radio-button [value]="{ drei: 3 }">Variant 3</app-radio-button>
+  <app-radio-button disabled [value]="{ fier: 4 }">Variant 4</app-radio-button>
+  <app-radio-button [value]="{ funf: 5 }">Variant 5</app-radio-button>
+</app-radio-button-group>
+
+<h3>Selected value:</h3>
+<div>
+  <pre>{{ selected | json }}</pre>
+</div>
