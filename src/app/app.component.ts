@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'ferchau-test-project';
+export class AppComponent implements OnInit {
+  form: FormGroup = this.fb.group({
+    email: ['', [Validators.email, Validators.required]],
+    option: [3],
+    variant: [],
+  });
+
+  formValue$!: Observable<any>;
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.formValue$ = this.form.valueChanges;
+  }
 }

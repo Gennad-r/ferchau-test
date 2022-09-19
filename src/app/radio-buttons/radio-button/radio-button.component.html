@@ -1,0 +1,24 @@
+<label
+  for="{{ id }}"
+  [class.disabled]="disabled !== undefined"
+  [class.checked]="checked !== undefined"
+>
+  <span class="radio-circle">
+    <span class="radio-circle__outer">
+      <span class="radio-circle__inner"></span>
+    </span>
+    <input
+      #ihputRef
+      (change)="inputChecked()"
+      id="{{ id }}"
+      name="{{ id }}"
+      type="radio"
+      [value]="value"
+      [attr.checked]="checked ? '' : null"
+      [attr.disabled]="disabled === undefined ? null : ''"
+    />
+  </span>
+  <span class="radio-label">
+    <ng-content></ng-content>
+  </span>
+</label>
