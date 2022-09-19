@@ -53,7 +53,7 @@ export class RadioButtonGroupComponent
     checked: boolean
   ): void {
     if (!button) return;
-    button.ihput.nativeElement.checked = checked;
+    button.input.nativeElement.checked = checked;
     button.checked = checked;
     button.detectChanges();
   }

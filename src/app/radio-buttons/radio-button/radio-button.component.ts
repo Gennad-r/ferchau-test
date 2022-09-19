@@ -18,7 +18,7 @@ import { RadioButtonGroupComponent } from '../radio-button-group/radio-button-gr
 })
 export class RadioButtonComponent implements OnInit {
   id = Math.random().toString(8).replace(/\./, '');
-  @ViewChild('ihputRef') ihput!: ElementRef;
+  @ViewChild('inputRef') input!: ElementRef;
   @Input() value?: any;
   checked = false;
   @Input() disabled: unknown = undefined;
@@ -31,7 +31,7 @@ export class RadioButtonComponent implements OnInit {
   inputChecked(): void {
     this.group.checkEventController(this);
     this.checked = true;
-    this.ihput.nativeElement.checked = this.checked !== undefined;
+    this.input.nativeElement.checked = this.checked !== undefined;
     this.detectChanges();
   }
 
