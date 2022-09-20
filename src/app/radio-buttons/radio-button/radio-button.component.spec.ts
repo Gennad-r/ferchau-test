@@ -94,7 +94,6 @@ describe('RadioButtonComponent', () => {
     it('should be disabled', () => {
       component['group']._disabled = true;
       expect(inputEl.nativeNode.disabled).toBeFalse();
-      component['group']._disabled = false;
     });
 
     it('should be unchecked', () => {

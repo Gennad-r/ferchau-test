@@ -39,8 +39,6 @@ describe('RadioButtonGroupComponent', () => {
       await runOnPushChangeDetection(fixture);
       const title = el.query(By.css('.group-title')).nativeNode.innerText;
       expect(title).toContain(fakeTitle);
-      component.groupTitle = undefined;
-      await runOnPushChangeDetection(fixture);
     });
   });
 });
