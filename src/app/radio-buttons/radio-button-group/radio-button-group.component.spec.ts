@@ -1,10 +1,6 @@
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  DebugElement,
-  forwardRef,
-} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { runOnPushChangeDetection } from '../tests.helpers';
 
@@ -19,7 +15,6 @@ describe('RadioButtonGroupComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [RadioButtonGroupComponent],
       imports: [ReactiveFormsModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RadioButtonGroupComponent);

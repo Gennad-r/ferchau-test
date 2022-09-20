@@ -75,7 +75,6 @@ describe('RadioButtonComponent', () => {
       component.input.nativeElement.checked = false;
       label = fixture.debugElement.nativeElement.querySelector('label');
       label.click();
-      console.log('component', component);
     });
 
     it('input has been checked', () => {

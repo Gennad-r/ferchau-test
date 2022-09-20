@@ -1,8 +1,4 @@
-<label
-  for="{{ id }}"
-  [class.disabled]="disabled !== undefined"
-  [class.checked]="checked"
->
+<label for="{{ id }}" [class.disabled]="!isDisabled" [class.checked]="checked">
   <span class="radio-circle">
     <span class="radio-circle__outer">
       <span class="radio-circle__inner"></span>
@@ -15,7 +11,7 @@
       type="radio"
       [value]="value"
       [attr.checked]="checked ? '' : null"
-      [attr.disabled]="disabled === undefined ? null : ''"
+      [attr.disabled]="isDisabled ? null : ''"
     />
   </span>
   <span class="radio-label">

@@ -28,10 +28,14 @@ export class RadioButtonComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
+  get isDisabled(): boolean {
+    return this.disabled === undefined;
+  }
+
   inputChecked(): void {
     this.group.checkEventController(this);
     this.checked = true;
-    this.input.nativeElement.checked = this.checked !== undefined;
+    this.input.nativeElement.checked = this.checked;
     this.detectChanges();
   }
 

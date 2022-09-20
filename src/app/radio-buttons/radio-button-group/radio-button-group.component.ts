@@ -44,7 +44,7 @@ export class RadioButtonGroupComponent
 
   checkEventController(checkedButton: RadioButtonComponent): void {
     this.buttons?.forEach((button) => this.changeButtonState(button, false));
-    if (this._disabled) return;
+    if (this._disabled || !this.onChange) return;
     this.onChange(checkedButton.value);
   }
 
