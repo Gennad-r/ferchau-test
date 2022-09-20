@@ -18,11 +18,11 @@ import { RadioButtonsModule } from './radio-buttons.module';
         formControlName="option"
         groupTitle="Disabled fieldset"
       >
-        <app-radio-button [disabled]="true" [value]="{ f: 1 }"
+        <app-radio-button [disabled]="true" value="fakeValue1"
           >Option 1</app-radio-button
         >
-        <app-radio-button [value]="{ f: 2 }">Option 2</app-radio-button>
-        <app-radio-button [value]="{ f: 3 }">Option 2</app-radio-button>
+        <app-radio-button value="fakeValue2">Option 2</app-radio-button>
+        <app-radio-button value="fakeValue3">Option 2</app-radio-button>
       </app-radio-button-group>
 
       <app-radio-button-group
@@ -41,7 +41,7 @@ import { RadioButtonsModule } from './radio-buttons.module';
 })
 class TestFormComponent {
   form: FormGroup = new FormGroup({
-    option: new FormControl({ f: 2 }),
+    option: new FormControl('fakeValue2'),
     option1: new FormControl(3),
   });
 }
@@ -67,10 +67,28 @@ describe('Integration Radio Group', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('First group', () => {
+  describe('First disabled group', () => {
     it('all inputs should be disabled', () => {
       let form = componentEl.queryAll(By.css('.first label'));
       form.forEach((el) => expect(el.nativeNode).toHaveClass('disabled'));
+    });
+
+    it('checked input has actual formgroup state', () => {
+      let inputChecked = componentEl.query(
+        By.css('.first label.checked input')
+      );
+      const comparsion =
+        inputChecked.nativeNode.value === component.form.value.option;
+      expect(comparsion).toBeTrue();
+    });
+
+    it('should not check input on disabled form', () => {
+      let firstUnchecked = componentEl.query(
+        By.css('.first label:not(.checked) input')
+      );
+      firstUnchecked.nativeElement.click();
+      fixture.detectChanges();
+      expect(firstUnchecked.nativeNode.checked).toBeFalsy();
     });
   });
 });
