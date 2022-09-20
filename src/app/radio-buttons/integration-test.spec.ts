@@ -18,7 +18,7 @@ import { RadioButtonsModule } from './radio-buttons.module';
         formControlName="option"
         groupTitle="Disabled fieldset"
       >
-        <app-radio-button [disabled]="true" value="fakeValue1"
+        <app-radio-button disabled value="fakeValue1"
           >Option 1</app-radio-button
         >
         <app-radio-button value="fakeValue2">Option 2</app-radio-button>
@@ -30,11 +30,11 @@ import { RadioButtonsModule } from './radio-buttons.module';
         formControlName="option1"
         groupTitle="Disabled fieldset"
       >
-        <app-radio-button [disabled]="true" [value]="1"
-          >Option 1</app-radio-button
+        <app-radio-button disabled value="einz">Option 1</app-radio-button>
+        <app-radio-button attr-unchecked value="zwei"
+          >Option 2</app-radio-button
         >
-        <app-radio-button [value]="2">Option 2</app-radio-button>
-        <app-radio-button [value]="3">Option 2</app-radio-button>
+        <app-radio-button value="drei">Option 2</app-radio-button>
       </app-radio-button-group>
     </form>
   `,
@@ -42,7 +42,7 @@ import { RadioButtonsModule } from './radio-buttons.module';
 class TestFormComponent {
   form: FormGroup = new FormGroup({
     option: new FormControl('fakeValue2'),
-    option1: new FormControl(3),
+    option1: new FormControl('drei'),
   });
 }
 
@@ -88,7 +88,47 @@ describe('Integration Radio Group', () => {
       );
       firstUnchecked.nativeElement.click();
       fixture.detectChanges();
-      expect(firstUnchecked.nativeNode.checked).toBeFalsy();
+      expect(firstUnchecked.nativeNode.checked).toBeFalse();
+    });
+  });
+
+  describe('Second enabled group', () => {
+    let form: DebugElement;
+    beforeEach(() => {
+      form = componentEl.query(By.css('.second'));
+    });
+
+    it('checked input has actual formgroup state', () => {
+      let inputChecked = form.query(By.css('label.checked input'));
+      const comparsion =
+        inputChecked.nativeNode.value === component.form.value.option1;
+      expect(comparsion).toBeTrue();
+    });
+
+    it('should check input and change form value', () => {
+      let unchecked = form.query(
+        By.css('app-radio-button[attr-unchecked] input')
+      );
+      unchecked.nativeElement.click();
+      fixture.detectChanges();
+      expect(unchecked.nativeNode.checked).toBeTrue();
+      expect(component.form.value.option1).toBe('zwei');
+    });
+
+    it('disabled app-radio-button should have disabled input', () => {
+      let disabledInput = form.query(
+        By.css('app-radio-button[disabled] input')
+      );
+      expect(disabledInput.nativeNode.disabled).toBeTrue();
+    });
+
+    it('in disabled app-radio-button not possible check disabled input', () => {
+      let disabledInput = form.query(
+        By.css('app-radio-button[disabled] input')
+      );
+      disabledInput.nativeElement.click();
+      fixture.detectChanges();
+      expect(disabledInput.nativeNode.checked).toBeFalse();
     });
   });
 });
