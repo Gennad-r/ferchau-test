@@ -2,6 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RadioButtonGroupComponent } from '../radio-button-group/radio-button-group.component';
+import { UnicIdService } from '../unic-id.service';
 
 import { RadioButtonComponent } from './radio-button.component';
 
@@ -23,6 +24,9 @@ describe('RadioButtonComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [RadioButtonComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [
+        { provide: UnicIdService, useValue: { getUnic: () => 'fake' } },
+      ],
     })
       .overrideComponent(RadioButtonComponent, {
         add: {

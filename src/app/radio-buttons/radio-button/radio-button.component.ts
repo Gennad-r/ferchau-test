@@ -7,17 +7,20 @@ import {
   Input,
   OnInit,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { RadioButtonGroupComponent } from '../radio-button-group/radio-button-group.component';
+import { UnicIdService } from '../unic-id.service';
 
 @Component({
   selector: 'app-radio-button[value]',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class RadioButtonComponent implements OnInit {
-  id = Math.random().toString(8).replace(/\./, '');
+  id = this.unic.getUnic('radiobutton-');
   @ViewChild('inputRef') input!: ElementRef;
   @Input() value?: any;
   checked = false;
@@ -25,7 +28,8 @@ export class RadioButtonComponent implements OnInit {
 
   constructor(
     @Host() private readonly group: RadioButtonGroupComponent,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private unic: UnicIdService
   ) {}
 
   get isDisabled(): boolean {

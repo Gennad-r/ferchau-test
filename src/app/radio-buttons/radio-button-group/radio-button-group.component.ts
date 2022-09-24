@@ -1,12 +1,12 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   forwardRef,
   Input,
   QueryList,
+  ViewEncapsulation,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButtonComponent } from '../radio-button/radio-button.component';
@@ -24,6 +24,7 @@ import { ValueAccessorGroup } from './value-accessor.abstract.class';
       multi: true,
     },
   ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class RadioButtonGroupComponent
   extends ValueAccessorGroup
@@ -33,7 +34,7 @@ export class RadioButtonGroupComponent
   @ContentChildren(RadioButtonComponent)
   buttons?: QueryList<RadioButtonComponent>;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor() {
     super();
   }
 
